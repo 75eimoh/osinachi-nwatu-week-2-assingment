@@ -1,0 +1,73 @@
+import 'package:flutter/material.dart';
+import 'package:week2assingment/product_detail_page.dart';
+import 'model_class.dart';
+import 'card.dart'; // still fine, just rename the widget inside
+
+class MyhomepagePage extends StatefulWidget {
+  const MyhomepagePage({super.key});
+
+  @override
+  State<MyhomepagePage> createState() => _MyhomepagePageState();
+}
+
+class _MyhomepagePageState extends State<MyhomepagePage> {
+  List<NewModel> dashboardLists = [
+    NewModel (
+        name: 'first',
+        image:
+        'https://th.bing.com/th/id/OIP.eGcgbJuqkx90MyS5pfOCpAHaE8?rs=1&pid=ImgDetMain',
+        detail: 'this is my first detail',
+        price: '1500'),
+    NewModel(
+        name: 'second',
+        image:
+        'https://th.bing.com/th/id/OIP.A152BUIUv3d-PR3pw5F1rQHaHa?rs=1&pid=ImgDetMain',
+        detail: 'this is my second detail',
+        price: '2500'),
+    NewModel(
+        name: 'messi',
+        image:
+        'https://www.mensjournal.com/.image/t_share/MjA2NTA2NzcxOTE5OTM5Mjc4/inter-miami-cf-v-new-england-revolution.jpg',
+        detail: 'THE GOAT',
+        price: '1500'),
+    NewModel(
+        name: 'CR7',
+        image:
+        'https://tse3.mm.bing.net/th/id/OIP.J901UCBECMnFOa2Ss_XJ9gHaE8?rs=1&pid=ImgDetMain&o=7&rm=3',
+        detail: 'second to the GOAT',
+        price: '2500'),
+    NewModel(
+        name: 'lamile yamal',
+        image:
+        'https://th.bing.com/th/id/OIP.A152BUIUv3d-PR3pw5F1rQHaHa?rs=1&pid=ImgDetMain',
+        detail: 'this is my fifth detail',
+        price: '2500'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: GridView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: dashboardLists.length,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+        ),
+        itemBuilder: (context, index) => GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ProductDetailPage(model: dashboardLists[index]),
+              ),
+            );
+          },
+          child: ProductCard(model: dashboardLists[index]),
+        ),
+
+      ),
+    );
+  }
+}
